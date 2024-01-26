@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('signup/', signup, name='signup'),
-    path('signup/signup_success', signup_success, name='signup_success')
+    path('signup/signup_success', signup_success, name='signup_success'),
+    path('signin/', signin, name='signin')
 ]

@@ -55,6 +55,17 @@
         <p>Choose an option:</p>
         <button onclick="location.href='/signin'">signin</button>
         <button onclick="location.href='/signup'">signup</button>
+        <p id="message"></p>
     </div>
+    <script>
+        // Get the message from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+
+        // If there is a message, display it
+        if (message) {
+            document.getElementById('message').textContent = message;
+        }
+    </script>
 </body>
 </html>
