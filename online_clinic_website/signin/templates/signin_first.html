@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>signin page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: opacity 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Signin Form</h2>
+        <p>{{ message }}</p>
+        <form action="/signin/" method="post">
+            {% csrf_token %}
+            <label for="username">username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">password:</label>
+            <input type="password" id="password" name="password" required>
+            <label for="user_position">user_position:</label>
+            <input type="text" id="user_position" name="user_position" required>
+            <button type="submit">signin</button>
+        </form>
+    </div>
+</body>
+</html>
