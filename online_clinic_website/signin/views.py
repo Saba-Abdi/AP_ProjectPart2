@@ -28,4 +28,25 @@ def signin(request):
         return render(request, 'signin_first.html')
 
 
+def secretary_page(request):
+    if 'username' in request.session and 'user_position' in request.session:
+        if request.session['user_position'] == 'secretary':
+            username = request.session['username']
+            user_position = request.session['user_position']
+            return render(request, 'secretary_profile_page.html', {'username': username, 'user_position': user_position})
+        else:
+            return redirect('signin')
+    else:
+        return redirect('signin')
 
+
+def patient_page(request):
+    if 'username' in request.session and 'user_position' in request.session:
+        if request.session['user_position'] == 'patient':
+            username = request.session['username']
+            user_position = request.session['user_position']
+            return render(request, 'patient_profile_page.html', {'username': username, 'user_position': user_position})
+        else:
+            return redirect('signin')
+    else:
+        return redirect('signin')
