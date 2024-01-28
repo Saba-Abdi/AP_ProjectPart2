@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+            color: #007bff;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        form {
+            color: #007bff;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Payment Page</h2>
+        <p>Dear {{ username }}!</p>
+        <p>You have chosen the {{ clinic_name }} clinic.</p>
+        <p>The cost of your visit is: {{ visit_cost }}</p>
+        <form action="/pay/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ username }}">
+            <input type="hidden" name="clinic_name" value="{{ clinic_name }}">
+            <input type="hidden" name="visit_cost" value="{{ visit_cost }}">
+            <input type="submit" value="Proceed to Payment" class="submit-button">
+        </form>
+
+    </div>
+</body>
+</html>

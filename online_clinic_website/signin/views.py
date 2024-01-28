@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from signup.models import User
+from signin.models import Clinic, Transaction, CapacityIncrease
 
 
 def signin(request):
@@ -50,3 +51,70 @@ def patient_page(request):
             return redirect('signin')
     else:
         return redirect('signin')
+
+
+def reserving_appointment(request):
+    clinics = Clinic.objects.all()
+    return render(request, 'reserve_appointment_first.html', {'clinics': clinics})
+
+
+def payment_page(request):
+    if 'username' in request.session and 'clinic' in request.POST:
+        username = request.session['username']
+        clinic_id = request.POST['clinic']
+        has_insurance = 'insurance' in request.POST and request.POST['insurance'] == 'on'
+
+        clinic = Clinic.objects.get(id=clinic_id)
+        visit_cost = clinic.cost
+        if has_insurance:
+            visit_cost *= 0.8  # apply 20% discount
+
+        return render(request, 'payment_page.html', {
+            'username': username,
+            'clinic_name': clinic.name,
+            'visit_cost': visit_cost,
+        })
+    else:
+        return redirect('patient_page')
+
+
+def pay(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        visit_cost = request.POST.get('visit_cost')
+        clinic_name = request.POST.get('clinic_name')
+
+        context = {
+            'username': username,
+            'visit_cost': visit_cost,
+            'clinic_name': clinic_name,
+        }
+
+        return render(request, 'gateway.html', context)
+
+
+def payment_success(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        visit_cost = request.POST.get('visit_cost')
+        clinic_name = request.POST.get('clinic_name')
+        card_number = request.POST.get('card_number')
+        expiry_date = request.POST.get('expiry_date')
+        cvv2 = request.POST.get('cvv2')
+
+        Transaction.objects.create(username=username, clinic_name=clinic_name, amount_paid=visit_cost)
+
+        # Reduce the clinic's capacity by 1
+        clinic = Clinic.objects.get(name=clinic_name)
+        clinic.capacity -= 1
+        clinic.save()
+
+        context = {
+            'username': username,
+            'clinic_name': clinic_name,
+            'visit_cost': visit_cost
+        }
+
+        return render(request, 'payment_successful.html', context)
+    else:
+        return redirect('patient_page')

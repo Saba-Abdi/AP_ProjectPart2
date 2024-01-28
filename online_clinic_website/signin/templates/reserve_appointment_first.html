@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Appointment reservation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+            color: #007bff;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        table {
+            color: #007bff;
+        }
+        form {
+            color: #007bff;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Capacity</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for clinic in clinics %}
+                <tr>
+                    <td>{{ clinic.name }}</td>
+                    <td>{{ clinic.capacity }}</td>
+                    <td>{{ clinic.cost }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/payment_page/" method="post">
+            {% csrf_token %}
+            <label for="clinic">Choose a clinic</label>
+            <select name="clinic" id="clinic">
+                {% for clinic in clinics %}
+                <option value="{{ clinic.id }}">{{ clinic.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="insurance">Do you have insurance?</label>
+            <input type="checkbox" id="insurance" name="insurance">
+            <br>
+            <input type="submit" value="continue" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>
