@@ -20,3 +20,5 @@ class CapacityIncrease(models.Model):
     username = models.CharField(max_length=200)
     clinic_name = models.CharField(max_length=200)
     increase_amount = models.IntegerField()
+
+
