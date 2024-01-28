@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Patient Profile Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #007bff;
+            color: white;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #fff;
+            padding: 20px;
+            color: black;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2 id="username"></h2>
+        <p id="position"></p>
+    </div>
+    <div class="content">
+        <button onclick="location.href='/reserving_appointment'" class="btn btn-primary btn-block mb-3">reserving a new appointment</button>
+        <button onclick="location.href='/previous_appointments'" class="btn btn-primary btn-block mb-3">previous appointments</button>
+        <button onclick="location.href='/current_appointment'" class="btn btn-primary btn-block mb-3">current appointment</button>
+        <button onclick="location.href='/signin'" class="btn btn-primary btn-block mb-3">Log out</button>
+    </div>
+    <script>
+        document.getElementById('username').innerText = "{{ username }}";
+        document.getElementById('position').innerText = "{{ user_position }}";
+    </script>
+</body>
+</html>

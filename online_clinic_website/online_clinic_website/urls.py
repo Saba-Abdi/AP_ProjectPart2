@@ -24,5 +24,10 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('signup/', signup, name='signup'),
     path('signup/signup_success', signup_success, name='signup_success'),
-    path('signin/', signin, name='signin')
-]
+    path('signin/', signin, name='signin'),
+    path('secretary_page/', secretary_page, name='secretary_page'),
+    path('patient_page/', patient_page, name='patient_page'),
+    path('reserving_appointment/', reserving_appointment, name='reserving_appointment'),
+    path('payment_page/', payment_page, name='payment_page'),
+    path('pay/', pay, name='pay'),
+    path('payment_success/', payment_success, name='payment_success')]
