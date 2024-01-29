@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Increase Clinic Capacity</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+            color: #007bff;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #000000;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Increase Clinic Capacity</h2>
+        <p>{{ message }}</p>
+        <form action="/increase_capacity/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ username }}">
+            <div class="form-group">
+                <label for="clinic_name">Clinic Name:</label><br>
+                <input type="text" id="clinic_name" name="clinic_name">
+            </div>
+            <div class="form-group">
+                <label for="increase_amount">Increase Amount:</label><br>
+                <input type="number" id="increase_amount" name="increase_amount">
+            </div>
+            <input type="submit" value="Increase Capacity" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>

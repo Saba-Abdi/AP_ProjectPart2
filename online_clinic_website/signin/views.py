@@ -118,3 +118,69 @@ def payment_success(request):
         return render(request, 'payment_successful.html', context)
     else:
         return redirect('patient_page')
+def previous_appointments(request):
+    username = request.session.get('username')
+    if username is not None:
+        user_appointments = Transaction.objects.filter(username=username)
+        return render(request, 'previous_appointments.html',
+                      {'appointments': user_appointments})
+    else:
+        return redirect('signin')
+
+
+def current_appointment(request):
+    username = request.session.get('username')
+    if username is not None:
+        the_current_appointment = Transaction.objects.filter(
+            username=username).last()
+        return render(request, 'current_appointment.html',
+                      {'appointment': the_current_appointment})
+    else:
+        return redirect('signin')
+
+
+def increase_capacity_info(request):
+    username = request.session.get('username')
+    if username is not None:
+        return render(request, 'increase_capacity.html', {'username': username})
+    else:
+        return redirect('signin')
+
+
+def increase_capacity(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        clinic_name = request.POST.get('clinic_name')
+        increase_amount = int(request.POST.get('increase_amount'))
+
+        try:
+            clinic = Clinic.objects.get(name=clinic_name)
+            clinic.capacity += increase_amount
+            clinic.save()
+
+            # Create a new CapacityIncrease record
+            CapacityIncrease.objects.create(username=username, clinic_name=clinic_name, increase_amount=increase_amount)
+
+            context = {
+                'username': username,
+                'clinic_name': clinic_name,
+                'new_capacity': clinic.capacity,
+            }
+
+            return render(request, 'increase_capacity_success.html', context)
+        except Clinic.DoesNotExist:
+            context = {
+                'username': username,
+                'message': 'There is no clinic with this information. Please try again.',
+            }
+            return render(request, 'increase_capacity.html', context)
+    else:
+        return render(request, 'increase_capacity.html')
+
+
+def current_appointments_info(request):
+    username = request.session.get('username')
+    if username is not None:
+        return render(request, 'clinic_appointments_info.html')
+    else:
+        return redirect('signin')

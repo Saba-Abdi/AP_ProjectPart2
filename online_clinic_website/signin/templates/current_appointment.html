@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Your Latest Appointment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+            color: #007bff;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #000000;
+        }
+        .appointment {
+            border: 1px solid #007bff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Your Latest Appointment</h2>
+        <div class="appointment">
+            <p><strong>Clinic:</strong> {{ appointment.clinic_name }}</p>
+            <p><strong>Amount Paid:</strong> {{ appointment.amount_paid }}</p>
+        </div>
+        <form action="/patient_page/" method="get">
+            <input type="submit" value="Return to Profile" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>
