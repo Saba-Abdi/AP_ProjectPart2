@@ -34,4 +34,9 @@ urlpatterns = [
     path('previous_appointments/', previous_appointments, name='previous_appointments'),
     path('current_appointment/', current_appointment, name='current_appointment'),
     path('increase_capacity_info/', increase_capacity_info, name='increase_capacity_info'),
-    path('increase_capacity/', increase_capacity, name='increase_capacity')]
+    path('increase_capacity/', increase_capacity, name='increase_capacity'),
+    path('current_appointments_info/', current_appointments_info,
+         name='current_appointments'),
+    path('get_clinic_appointments/', get_clinic_appointments,
+         name='get_clinic_appointments'),
+]

@@ -184,3 +184,20 @@ def current_appointments_info(request):
         return render(request, 'clinic_appointments_info.html')
     else:
         return redirect('signin')
+
+
+def get_clinic_appointments(request):
+    if request.method == 'POST':
+        clinic_name = request.POST.get('clinic_name')
+        try:
+            clinic = Clinic.objects.get(name=clinic_name)
+            transactions = Transaction.objects.filter(clinic_name=clinic_name)
+            return render(request, 'get_clinic_appointments.html',
+                          {'transactions': transactions})
+        except Clinic.DoesNotExist:
+            context = {
+                'message': 'There is no clinic with this information. Please try again.',
+            }
+            return render(request, 'clinic_appointments_info.html', context)
+    else:
+        return render(request, 'clinic_appointments_info.html')
