@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Get Clinic Transactions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+            color: #007bff;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #000000;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Get Clinic Transactions</h2>
+        <p>{{ message }}</p>
+        <form action="/get_clinic_appointments/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="clinic_name">Clinic Name:</label><br>
+                <input type="text" id="clinic_name" name="clinic_name">
+            </div>
+            <input type="hidden" name="username" value="{{ username }}">
+            <input type="submit" value="Get Transactions" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>

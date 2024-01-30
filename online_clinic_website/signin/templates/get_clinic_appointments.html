@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>Clinic Appointments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+            color: #007bff;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #000000;
+        }
+        .appointment {
+            border: 1px solid #007bff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Clinic Appointments</h2>
+        {% for transaction in transactions %}
+            <div class="appointment">
+                <p><strong>Username:</strong> {{ transaction.username }}</p>
+                <p><strong>Amount Paid:</strong> {{ transaction.amount_paid }}</p>
+            </div>
+        {% endfor %}
+        <form action="/secretary_page/" method="get">
+            <input type="submit" value="Return to Profile" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>

@@ -201,3 +201,52 @@ def get_clinic_appointments(request):
             return render(request, 'clinic_appointments_info.html', context)
     else:
         return render(request, 'clinic_appointments_info.html')
+
+def cancel_appointment_info(request):
+    username = request.session.get('username')
+    if username is not None:
+        return render(request, 'cancel_appointment_info.html', {'username': username})
+    else:
+        return redirect('signin')
+
+
+def cancel_latest_appointment(request):
+    if request.method == 'POST':
+        patient = request.POST.get('patient_name')
+        clinic_name = request.POST.get('clinic_name')
+        try:
+            user = User.objects.get(username=patient)
+            clinic = Clinic.objects.get(name=clinic_name)
+            appointment = Transaction.objects.filter(username=patient,
+                                                     clinic_name=clinic_name).last()
+            if appointment is not None:
+                deleted_id = appointment.id
+                appointment.delete()
+                clinic.capacity += 1
+                clinic.save()
+
+                context = {
+                    'clinic_name': clinic_name,
+                    'new_capacity': clinic.capacity,
+                    'deleted_id': deleted_id,
+                }
+
+                return render(request, 'cancel_successful.html', context)
+            else:
+                context = {
+                    'message': 'There is no appointment with this information.',
+                }
+                return render(request, 'cancel_appointment_info.html', context)
+        except Clinic.DoesNotExist:
+            context = {
+                'message': 'There is no clinic with this name. Try again',
+            }
+            return render(request, 'cancel_appointment_info.html', context)
+        except User.DoesNotExist:
+            context = {
+                'message': 'There is no patient with this information. Try again.',
+            }
+            return render(request, 'cancel_appointment_info.html', context)
+    else:
+        return render(request, 'cancel_appointment_info.html')
+

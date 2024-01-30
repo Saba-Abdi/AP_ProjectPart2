@@ -39,4 +39,6 @@ urlpatterns = [
          name='current_appointments'),
     path('get_clinic_appointments/', get_clinic_appointments,
          name='get_clinic_appointments'),
+    path('cancel_appointment_info/', cancel_appointment_info, name='cancel_appointment_info'),
+    path('cancel_latest_appointment/', cancel_latest_appointment, name='cancel_latest_appointment')
 ]
