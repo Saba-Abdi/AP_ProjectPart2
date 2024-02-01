@@ -22,5 +22,6 @@ class User(models.Model):
     positions = [('secretary', 'secretary'), ('patient', 'patient')]
     position = models.CharField(max_length=16, choices=positions, default='patient')
 
+    # This function returns a string representation of the user object
     def __str__(self):
         return self.username + ' ' + self.password

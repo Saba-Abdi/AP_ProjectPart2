@@ -3,7 +3,7 @@ from django.contrib import messages
 from signup.models import User
 from signin.models import Clinic, Transaction, CapacityIncrease
 
-
+# This view function handles the sign in process for users
 def signin(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -28,7 +28,7 @@ def signin(request):
     else:
         return render(request, 'signin_first.html')
 
-
+# This view function renders the secretary profile page for the logged in secretary
 def secretary_page(request):
     if 'username' in request.session and 'user_position' in request.session:
         if request.session['user_position'] == 'secretary':
@@ -40,7 +40,7 @@ def secretary_page(request):
     else:
         return redirect('signin')
 
-
+# This view function renders the patient profile page for the logged in patient
 def patient_page(request):
     if 'username' in request.session and 'user_position' in request.session:
         if request.session['user_position'] == 'patient':
@@ -52,12 +52,12 @@ def patient_page(request):
     else:
         return redirect('signin')
 
-
+# This view function displays the available clinics for reserving an appointment
 def reserving_appointment(request):
     clinics = Clinic.objects.all()
     return render(request, 'reserve_appointment_first.html', {'clinics': clinics})
 
-
+# This view function shows the payment page for the selected clinic and insurance option
 def payment_page(request):
     if 'username' in request.session and 'clinic' in request.POST:
         username = request.session['username']
@@ -77,7 +77,7 @@ def payment_page(request):
     else:
         return redirect('patient_page')
 
-
+# This view function redirects the user to the gateway page with the payment details
 def pay(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -92,7 +92,7 @@ def pay(request):
 
         return render(request, 'gateway.html', context)
 
-
+# This view function handles the payment success for the user and updates the clinic's capacity
 def payment_success(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -118,6 +118,8 @@ def payment_success(request):
         return render(request, 'payment_successful.html', context)
     else:
         return redirect('patient_page')
+    
+# This view function shows the previous appointments of the logged in user
 def previous_appointments(request):
     username = request.session.get('username')
     if username is not None:
@@ -127,7 +129,7 @@ def previous_appointments(request):
     else:
         return redirect('signin')
 
-
+# This view function shows the current appointment of the logged in user
 def current_appointment(request):
     username = request.session.get('username')
     if username is not None:
@@ -138,7 +140,7 @@ def current_appointment(request):
     else:
         return redirect('signin')
 
-
+# This view function displays the information for increasing the clinic's capacity
 def increase_capacity_info(request):
     username = request.session.get('username')
     if username is not None:
@@ -146,7 +148,7 @@ def increase_capacity_info(request):
     else:
         return redirect('signin')
 
-
+# This view function handles the request for increasing the clinic's capacity
 def increase_capacity(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -177,7 +179,7 @@ def increase_capacity(request):
     else:
         return render(request, 'increase_capacity.html')
 
-
+# This view function displays the information for the current appointments of a clinic
 def current_appointments_info(request):
     username = request.session.get('username')
     if username is not None:
@@ -185,7 +187,7 @@ def current_appointments_info(request):
     else:
         return redirect('signin')
 
-
+# This view function shows the current appointments of a clinic based on the user's input
 def get_clinic_appointments(request):
     if request.method == 'POST':
         clinic_name = request.POST.get('clinic_name')
@@ -202,6 +204,7 @@ def get_clinic_appointments(request):
     else:
         return render(request, 'clinic_appointments_info.html')
 
+# This view function displays the information for canceling the latest appointment of a patient
 def cancel_appointment_info(request):
     username = request.session.get('username')
     if username is not None:
@@ -209,7 +212,7 @@ def cancel_appointment_info(request):
     else:
         return redirect('signin')
 
-
+# This view function handles the request for canceling the latest appointment of a patient and updates the clinic's capacity
 def cancel_latest_appointment(request):
     if request.method == 'POST':
         patient = request.POST.get('patient_name')
