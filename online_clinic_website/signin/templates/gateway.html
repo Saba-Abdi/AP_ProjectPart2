@@ -7,20 +7,35 @@
         body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #ffffff;
-            color: #007bff;
+            background-color: #D9F7EC;
+            color: #054B33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .content {
             margin: 0 auto;
             max-width: 800px;
             padding: 20px;
+            background-color: #DDFBF2;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            height: 500px;
+            width: 40%;
+            text-align: center;
         }
         form {
-            color: #007bff;
+            color: #054B33;
         }
         .submit-button {
-            background-color: #007bff;
-            color: #000000;
+            background-color: #185A44;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background-color: #10412c;
         }
     </style>
 </head>
@@ -36,13 +51,13 @@
             <input type="hidden" name="clinic_name" value="{{ clinic_name }}">
             <input type="hidden" name="visit_cost" value="{{ visit_cost }}">
             <label for="card_number">Card Number:</label><br>
-            <input type="text" id="card_number" name="card_number"><br>
-            <label for="card_number">Password:</label><br>
-            <input type="text" id="password" name="card_number"><br>
+            <input type="text" id="card_number" name="card_number" required><br>
+            <label for="password">Password:</label><br>
+            <input type="text" id="password" name="password" required><br>
             <label for="expiry_date">Expiry Date:</label><br>
-            <input type="text" id="expiry_date" name="expiry_date"><br>
+            <input type="text" id="expiry_date" name="expiry_date" required><br>
             <label for="cvv2">CVV2:</label><br>
-            <input type="text" id="cvv2" name="cvv2"><br>
+            <input type="text" id="cvv2" name="cvv2" required><br>
             <input type="submit" value="Pay" class="submit-button">
         </form>
     </div>

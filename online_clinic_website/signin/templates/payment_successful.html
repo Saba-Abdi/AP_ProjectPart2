@@ -7,23 +7,41 @@
         body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #ffffff;
-            color: #007bff;
+            background-color: #D9F7EC;
+            color: #054B33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .content {
             margin: 0 auto;
             max-width: 800px;
             padding: 20px;
+            background-color: #DDFBF2;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            height: 250px;
+            width: 40%;
+            text-align: center;
+        }
+        form {
+            color: #054B33;
         }
         .submit-button {
-            background-color: #007bff;
-            color: #000000;
+            background-color: #185A44;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background-color: #10412c;
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <h2>Payment Successful</h2>
+        <h2>Payment Success</h2>
         <p>Dear {{ username }}, your payment was successful!</p>
         <form action="/patient_page/" method="get">
             <input type="submit" value="Return to Profile" class="submit-button">

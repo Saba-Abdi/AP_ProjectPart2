@@ -7,24 +7,42 @@
         body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #ffffff;
-            color: #007bff;
+            background-color: #E3D4FC;
+            color: #250366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .content {
             margin: 0 auto;
             max-width: 800px;
             padding: 20px;
+            background-color: #EDE4FE;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            height: 280px;
+            width: 40%;
+            text-align: center;
+        }
+        form {
+            color: #250366;
         }
         .submit-button {
-            background-color: #007bff;
-            color: #000000;
+            background-color: #39157D;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background-color: #280F59;
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <h2>Capacity Increased Successfully</h2>
-        <p>The capacity of the {{ clinic_name }} clinic has been increased. The new capacity is: {{ new_capacity }}</p>
+        <h2>Capacity Increased Successfully</h2><br></br>
+        <p>The capacity of the {{ clinic_name }} clinic has been increased<br>The new capacity is: {{ new_capacity }}</br></p>
         <form action="/secretary_page/" method="get">
             <input type="submit" value="Return to Profile" class="submit-button">
         </form>

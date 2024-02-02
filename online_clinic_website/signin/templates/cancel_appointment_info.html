@@ -7,17 +7,34 @@
         body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #ffffff;
-            color: #007bff;
+            background-color: #E3D4FC;
+            color: #250366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .content {
             margin: 0 auto;
             max-width: 800px;
             padding: 20px;
+            background-color: #EDE4FE;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 40%;
+            text-align: center;
+        }
+        form {
+            color: #250366;
         }
         .submit-button {
-            background-color: #007bff;
-            color: #000000;
+            background-color: #39157D;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background-color: #280F59;
         }
         .form-group {
             margin-bottom: 10px;
@@ -31,7 +48,7 @@
         <form action="/cancel_latest_appointment/" method="post">
             {% csrf_token %}
             <div class="form-group">
-                <label for="patient_name">Patient Name:</label><br>
+                <label for="patient_name">Patient UserName:</label><br>
                 <input type="text" id="patient_name" name="patient_name">
             </div>
             <div class="form-group">
