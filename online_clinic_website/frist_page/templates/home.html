@@ -6,8 +6,8 @@
     <title>Online Clinic Appointment</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #DCE6F6;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,35 +17,42 @@
         }
 
         .appointment-container {
-            background-color: #fff;
-            padding: 20px;
+            background-color: #E3ECF9;
+            padding: 60px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
             text-align: center;
+            width: 650px;
         }
 
         h1 {
-            color: #333;
+            color: #425879;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+            white-space: nowrap;
+            margin-bottom: 30px;
         }
 
         p {
-            color: #666;
+            color: #4D6690;
+            margin-bottom: 30px;
         }
 
         button {
-            background-color: #007bff;
+            background-color: #3F70C4;
             color: #fff;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin: 0 10px;
+            margin: 10px;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #2A4E8F;
         }
     </style>
 </head>
@@ -53,8 +60,8 @@
     <div class="appointment-container">
         <h1>Welcome To Online Clinic Appointment</h1>
         <p>Choose an option:</p>
-        <button onclick="location.href='/signin'">signin</button>
-        <button onclick="location.href='/signup'">signup</button>
+        <button onclick="location.href='/signin'">sign in</button>
+        <button onclick="location.href='/signup'">sign up</button>
         <p id="message"></p>
     </div>
     <script>

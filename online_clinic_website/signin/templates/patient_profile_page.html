@@ -7,8 +7,12 @@
         body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #007bff;
+            background-color: #BCF1DE;
             color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .sidebar {
             position: fixed;
@@ -16,26 +20,86 @@
             left: 0;
             height: 100%;
             width: 200px;
-            background-color: #fff;
+            background-color: #D9F7EC;
             padding: 20px;
             color: black;
+            border-right: 15px solid #B8D3C9;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .content {
+        .container {
             margin-left: 220px;
+            width: 50%;
+            height: 60%;
+            background-color: #D9F8ED;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             padding: 20px;
+            position: relative;
+            left: +15%;
+        }
+        h4 {
+            color: #054B33;
+            text-align: center;
+        }
+        p {
+            color: #054B33;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        button.btn {
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            width: 60%;
+            margin-bottom: 10px;
+            height: 55px;
+            background-color: #185A44 !important;
+            border-radius: 6px;
+            color: white !important;  /* Change the text color */
+        }
+        button.btn:hover {
+            background-color: #10412c !important;  /* Darken the background color on hover */
+        }
+        .logout-button.btn {
+            background-color: #6CA290 !important;
+            color: white !important;
+            width: 60%;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: #507f6b !important;  /* Darken the background color on hover */
+        }
+        .help-text, .doctor-online {
+            text-align: center;
+            color: #054B33;
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2 id="username"></h2>
-        <p id="position"></p>
+        <div>
+            <h4 id="username"></h4>
+            <p id="position"></p>
+        </div>
+        <h5 class="doctor-online">Doctor Online</h5>
     </div>
-    <div class="content">
-        <button onclick="location.href='/reserving_appointment'" class="btn btn-primary btn-block mb-3">reserving a new appointment</button>
-        <button onclick="location.href='/previous_appointments'" class="btn btn-primary btn-block mb-3">previous appointments</button>
-        <button onclick="location.href='/current_appointment'" class="btn btn-primary btn-block mb-3">current appointment</button>
-        <button onclick="location.href='/signin'" class="btn btn-primary btn-block mb-3">Log out</button>
+    <div class="container">
+        <p class="help-text">How Can I Help You?</p>
+        <div class="button-container">
+            <button onclick="location.href='/reserving_appointment'" class="btn btn-primary mb-3">Reserving a New Appointment</button>
+            <button onclick="location.href='/previous_appointments'" class="btn btn-primary mb-3">Previous Appointments</button>
+            <button onclick="location.href='/current_appointment'" class="btn btn-primary mb-3">Current Appointment</button>
+            <button onclick="location.href='/signin'" class="btn logout-button">Log Out</button>
+        </div>
     </div>
     <script>
         document.getElementById('username').innerText = "{{ username }}";

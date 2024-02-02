@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>signin page</title>
+    <title>sign in page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #DCE6F6;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -15,10 +15,10 @@
         }
 
         .container {
-            width: 80%;
-            background-color: #fff;
+            width: 50%;
+            background-color: #EEF3F9;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             margin-top: 50px;
         }
 
@@ -34,26 +34,27 @@
         }
 
         label {
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
         input, select {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 11px;
+            margin-bottom: 11px;
+            border: 1.5px solid #ddd;
+            border-radius: 5px;
             box-sizing: border-box;
         }
 
         button {
             background-color: #007bff;
             color: white;
-            padding: 15px 20px;
+            padding: 8px 10px;
             margin-top: 10px;
             border: none;
             cursor: pointer;
             border-radius: 4px;
             transition: opacity 0.3s ease;
+            width: 40%;
         }
 
         button:hover {
@@ -71,10 +72,26 @@
             <input type="text" id="username" name="username" required>
             <label for="password">password:</label>
             <input type="password" id="password" name="password" required>
-            <label for="user_position">user_position:</label>
-            <input type="text" id="user_position" name="user_position" required>
-            <button type="submit">signin</button>
+            <label for="user_position">User Position:</label>
+            <select id="user_position" name="user_position" required>
+                <option value="">Select...</option>
+                <option value="patient">Patient</option>
+                <option value="secretary">Secretary</option>
+            </select>
+            <button type="submit">sign in</button>
         </form>
     </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            var inputs = this.elements;
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].required && !inputs[i].value) {
+                    event.preventDefault();
+                    alert(inputs[i].name + " field is required");
+                    return;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
